@@ -1,0 +1,26 @@
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.login-form {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	input {
+		height: 40px;
+		border-radius: 5px;
+	}
+}
+
+.login-btn {
+	font-size: 18px;
+	width: 500px;
+	height: 40px;
+	border: none;
+	border-radius: 15px;
+	background: hsl(244, 63%, 47%);
+	color: #ebe5e7;
+}
