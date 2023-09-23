@@ -3,7 +3,9 @@ import { useState } from "react";
 import { LoginAPI } from "../api/AuthAPI";
 import Logo from "./Logo";
 import MainHeading from "./MainHeading";
+import Paragraph from "./Paragraph";
 import "../Sass/LoginComponent.scss";
+import GoogleButton from "./GoogleButton";
 
 function LoginComponent() {
 	const [credentials, setCredentials] = useState({});
@@ -22,8 +24,10 @@ function LoginComponent() {
 		<>
 			<Logo />
 			<div className="login-container">
-				<MainHeading message="Nua, Sign in" />
-				<form className="login-form">
+				<MainHeading className="main-heading" message="Nua o! Sign in" />
+				<Paragraph className="text" text="Stay updated with family" />
+				<p></p>
+				<form id="login-form" name="login" className="login-form">
 					<input
 						autoComplete="true"
 						className="common-input"
@@ -45,12 +49,20 @@ function LoginComponent() {
 							})
 						}
 						placeholder="Enter your password"
+						type="password"
 					/>
 
 					<button onClick={login} className="login-btn">
-						Login
+						Sign in
 					</button>
 				</form>
+
+				<hr data-content="or" />
+				<GoogleButton onClick={() => console.log("button clicked")} />
+				<div className="new-member-container">
+					<Paragraph className="text" text="New member?" />
+					<a href="">Sign up here</a>
+				</div>
 			</div>
 		</>
 	);
