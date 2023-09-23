@@ -1,52 +1,57 @@
 import { useState } from "react";
 
-import { RegisterAPI } from "../api/AuthAPI";
+import { LoginAPI } from "../api/AuthAPI";
+import Logo from "./Logo";
+import MainHeading from "./MainHeading";
 import "../Sass/LoginComponent.scss";
 
 function LoginComponent() {
 	const [credentials, setCredentials] = useState({});
-	function login() {
+
+	async function login(e) {
 		try {
-			let res = RegisterAPI(credentials.email, credentials.password);
-			console.log("this is the response from register", res);
+			e.preventDefault();
+			let res = await LoginAPI(credentials.email, credentials.password);
+			console.log(res);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 		}
 	}
 
 	return (
 		<>
-			<h1>Login component </h1>
-			<form className="login-form">
-				<input
-					autoComplete="true"
-					className="common-input"
-					onChange={(event) =>
-						setCredentials({
-							...credentials,
-							email: event.target.value,
-						})
-					}
-					placeholder="Enter your email"
-				/>
-				<input
-					autoComplete="true"
-					className="common-input"
-					onChange={(event) =>
-						setCredentials({
-							...credentials,
-							password: event.target.value,
-						})
-					}
-					placeholder="Enter your password"
-				/>
+			<Logo />
+			<div className="login-container">
+				<MainHeading message="Nua, Sign in" />
+				<form className="login-form">
+					<input
+						autoComplete="true"
+						className="common-input"
+						onChange={(event) =>
+							setCredentials({
+								...credentials,
+								email: event.target.value,
+							})
+						}
+						placeholder="Enter your email"
+					/>
+					<input
+						autoComplete="true"
+						className="common-input"
+						onChange={(event) =>
+							setCredentials({
+								...credentials,
+								password: event.target.value,
+							})
+						}
+						placeholder="Enter your password"
+					/>
 
-				<button onClick={login} className="login-btn">
-					Login
-				</button>
-
-				{login()}
-			</form>
+					<button onClick={login} className="login-btn">
+						Login
+					</button>
+				</form>
+			</div>
 		</>
 	);
 }
