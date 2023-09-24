@@ -1,4 +1,9 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+	signInWithEmailAndPassword,
+	createUserWithEmailAndPassword,
+	GoogleAuthProvider,
+	signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
 export const LoginAPI = (email, password) => {
@@ -9,3 +14,22 @@ export const LoginAPI = (email, password) => {
 		return err;
 	}
 };
+
+export const RegisterAPI = (email, password) => {
+	try {
+		let response = createUserWithEmailAndPassword(auth, email, password);
+		return response;
+	} catch (err) {
+		return err;
+	}
+};
+
+export function GoogleSignAPI() {
+	try {
+		let googleProvider = new GoogleAuthProvider();
+		let res = signInWithPopup(auth, googleProvider);
+		return res;
+	} catch (err) {
+		return err;
+	}
+}
