@@ -40,9 +40,14 @@ body {
 		gap: 1rem;
 
 		input {
+			padding: 10px;
 			height: 40px;
 			border-radius: 5px;
 		}
+	}
+
+	button {
+		font-weight: 700;
 	}
 
 	.login-btn {
@@ -63,7 +68,7 @@ body {
 		padding-right: 5px;
 		background-color: rgb(37, 119, 241);
 		color: #ebe5e7;
-    cursor: pointer;
+		cursor: pointer;
 		border: 1px solid rgb(182, 181, 181);
 		// padding: 10px 20px;
 	}

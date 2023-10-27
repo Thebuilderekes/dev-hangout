@@ -1,20 +1,23 @@
+import React from "react";
 import { useState } from "react";
-import { LoginAPI, GoogleSignAPI } from "../api/AuthAPI";
-import Logo from "./Logo";
-import MainHeading from "./MainHeading";
-import Paragraph from "./Paragraph";
-import GoogleSignInButton from "./GoogleButton";
+import { RegisterAPI, GoogleSignAPI } from "../../api/AuthAPI";
+import "../../Sass/LoginComponent.css";
+import Logo from "../Logo/Logo";
+import MainHeading from "../Headings/Heading";
+import Paragraph from "../Paragraph/Paragraph";
+import googleLogo from "../../assets/logo.png";
 import { toast } from "react-toastify";
-import "../Sass/LoginComponent.scss";
+import { useNavigate } from "react-router-dom";
+function RegisterComponent() {
+	let navigate = useNavigate();
 
-function LoginComponent() {
 	const [credentials, setCredentials] = useState({});
 
 	async function login(e) {
 		try {
 			e.preventDefault();
-			let res = await LoginAPI(credentials.email, credentials.password);
-			toast.success("Signed in to Dugos", {
+			let res = await RegisterAPI(credentials.email, credentials.password);
+			toast.success("Account created", {
 				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -24,9 +27,10 @@ function LoginComponent() {
 				progress: undefined,
 				theme: "light",
 			});
+			navigate("/home");
 			console.log(res);
 		} catch (error) {
-			toast.error("Please check your credentials");
+			toast.error("cannot create account, sign in with google");
 			console.log(error);
 		}
 	}
@@ -36,7 +40,9 @@ function LoginComponent() {
 
 		try {
 			let response = GoogleSignAPI();
-			toast.success("Signed in to Dugos", {
+
+			//toast indicator will show when
+			toast.success("Account created", {
 				position: "top-right",
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -50,6 +56,7 @@ function LoginComponent() {
 			console.log("working");
 		} catch (error) {
 			console.log(error);
+			toast.error("account cannot be created, try signing in with google");
 		}
 	}
 
@@ -57,8 +64,11 @@ function LoginComponent() {
 		<>
 			<Logo />
 			<div className="login-container">
-				<MainHeading className="main-heading" message="Nua o! Sign in" />
-				<Paragraph className="text" text="Stay updated with family" />
+				<MainHeading className="main-heading" message="Register your account" />
+				<Paragraph
+					className="text"
+					text="Connect with other Beredugo descendants"
+				/>
 				<p></p>
 				<form id="login-form" name="login" className="login-form">
 					<input
@@ -90,20 +100,24 @@ function LoginComponent() {
 					/>
 
 					<button onClick={login} className="login-btn">
-						Sign in
+						Agree & Join
 					</button>
 				</form>
 
 				<hr data-content="or" />
-				<GoogleSignInButton onClick={googleSignIn} />
-				<button onClick={googleSignIn}>google sign in</button>
+				<button className="google-btn" onClick={googleSignIn}>
+					<img src={googleLogo} alt="google icon" width={40} height={40} />
+					Sign in with Google
+				</button>
 				<div className="new-member-container">
-					<Paragraph className="text" text="New member?" />
-					<a href="">Sign up here</a>
+					<Paragraph className="text" text="Already a member of the family?" />
+					<a onClick={() => navigate("/")} href="">
+						Sign in
+					</a>
 				</div>
 			</div>
 		</>
 	);
 }
 
-export default LoginComponent;
+export default RegisterComponent;
