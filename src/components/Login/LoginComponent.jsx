@@ -29,6 +29,7 @@ function LoginComponent() {
 				progress: undefined,
 				theme: "light",
 			});
+			navigate("/home");
 			console.log(res);
 		} catch (error) {
 			toast.error("Please check your credentials");
@@ -53,6 +54,7 @@ function LoginComponent() {
 				progress: undefined,
 				theme: "light",
 			});
+			navigate("/home");
 			console.log(response);
 			console.log("working");
 		} catch (error) {

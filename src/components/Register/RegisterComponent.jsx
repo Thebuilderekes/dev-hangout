@@ -27,7 +27,7 @@ function RegisterComponent() {
 				progress: undefined,
 				theme: "light",
 			});
-			navigate("/home");
+			navigate("/home"); /* navigate to  the home component*/
 			console.log(res);
 		} catch (error) {
 			toast.error("cannot create account, sign in with google");
@@ -52,6 +52,7 @@ function RegisterComponent() {
 				progress: undefined,
 				theme: "light",
 			});
+			navigate("/home");
 			console.log(response);
 			console.log("working");
 		} catch (error) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function HomeComponent() {
 	return <h1>HomeComponent</h1>;
