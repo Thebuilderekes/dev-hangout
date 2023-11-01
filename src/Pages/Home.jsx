@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import React from "react";
+import TopBar from "../components/TopBar/TopBar";
 import HomeComponent from "../components/Home/HomeComponent";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
@@ -17,7 +18,12 @@ function Home() {
 		});
 	}, []);
 
-	return <HomeComponent />;
+	return (
+		<>
+			<TopBar />
+			<HomeComponent />
+		</>
+	);
 }
 
 export default Home;

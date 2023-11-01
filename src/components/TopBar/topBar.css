@@ -1,0 +1,17 @@
+.nav-container {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(18, 21, 26);
+}
+.nav-container .home-logo {
+  color: white;
+  font-size: var(--fs-medium);
+  font-weight: 800;
+}
+.nav-container nav ul {
+  display: flex;
+  gap: var(--fs-default);
+}/*# sourceMappingURL=topBar.css.map */
