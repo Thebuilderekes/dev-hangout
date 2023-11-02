@@ -3,15 +3,15 @@ import { firestore } from "../firebaseConfig";
 
 let dbRef = collection(firestore, "posts");
 export const postStatus = (status) => {
-	let object = {
+	let postObject = {
 		status: status,
 	};
-	addDoc(dbRef, object)
+	addDoc(dbRef, postObject)
 		.then((res) => {
 			console.log("Post status working");
 		})
 
 		.catch((err) => {
-			console.log("Post status error");
+			console.log(err);
 		});
 };
