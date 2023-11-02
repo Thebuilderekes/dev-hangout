@@ -1,0 +1,26 @@
+.post-status-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+.post-status-container .post-status {
+  width: 70%;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  background: #d8d7d7;
+}
+.post-status-container .post-status .open-post-modal {
+  font-size: var(--fs-1-2);
+  border: 1px solid #aaaaaa;
+  border-radius: 30px;
+  margin: 2%;
+  padding: 2% 20%;
+  text-align: left;
+  background: #f7f9fa;
+  color: #999999;
+  cursor: pointer;
+}
+.post-status-container .post-status .open-post-modal:hover {
+  background-color: #f3f0f0;
+}/*# sourceMappingURL=index.css.map */

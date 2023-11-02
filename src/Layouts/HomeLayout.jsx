@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "../Pages/Home";
-import TopBar from "../components/TopBar/TopBar";
+import TopBar from "../components/Common/TopBar";
 function HomeLayout() {
 	return (
 		<>

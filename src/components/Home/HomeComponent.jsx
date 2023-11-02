@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
-
+import PostStatus from "../Common/PostUpdate/index";
 function HomeComponent() {
-	return <h1>HomeComponent</h1>;
+	return (
+		<>
+			<PostStatus />
+		</>
+	);
 }
 
 export default HomeComponent;

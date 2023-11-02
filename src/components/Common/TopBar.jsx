@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiFillHome, AiOutlineBell, AiOutlineMessage } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
-import "../TopBar/topBar.css";
+import "./topBar.css";
 
 function TopBar() {
 	const style = { color: "white", cursor: "pointer" };
@@ -16,7 +16,7 @@ function TopBar() {
 					<Link to="/">
 						<AiFillHome style={style} size={40} />
 					</Link>
-					<Link to="/">
+					<Link to="/register">
 						<AiOutlineBell style={style} size={40} />
 					</Link>
 					<Link to="/">
