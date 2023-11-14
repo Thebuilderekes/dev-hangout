@@ -1,21 +1,30 @@
 import React from "react";
-import { postStatus } from "../../../api/FirestoreAPI";
-import { useState } from "react";
+import { postStatus, getStatus } from "../../../api/FirestoreAPI";
+import { useState, useMemo } from "react";
 import ModalComponent from "../Modal/index";
+import PostCard from "../PostCard";
 
 import "./index.css";
 
 function PostStatus() {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [status, setStatus] = useState("");
+	const [allStatuses, setAllStatuses] = useState([]);
 
 	const handleModal = () => {
 		console.log("modal clicked");
-		setModalOpen(true);
+		setModalOpen(true); // open modal when you click to write something
 	};
-	const sendStatus = () => {
-		postStatus(status);
+	const sendStatus = async () => {
+		await postStatus(status);
+		await setModalOpen(false); //close modal after you send the post
+		await setStatus(""); //make post modal to be empty after post
 	};
+
+	useMemo(() => {
+		getStatus(setAllStatuses);
+		//getStatus takes in setAllStatuses function as an arguemnt which at this time is an empty array but will be later given a value of all the statuses spread into it's array in the postUpdate > index.jsx component so that allStatuses can be mapped through and presented on screen here.
+	}, []);
 	return (
 		<div className="post-status-container">
 			<div className="post-status">
@@ -30,6 +39,11 @@ function PostStatus() {
 				sendStatus={sendStatus}
 				setStatus={setStatus}
 			/>
+			<div>
+				{allStatuses.map((posts) => {
+					return <PostCard posts={posts} />;
+				})}
+			</div>
 		</div>
 	);
 }
