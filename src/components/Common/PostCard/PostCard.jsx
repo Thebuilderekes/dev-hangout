@@ -1,7 +1,8 @@
 import React from "react";
+import "./postcard.css";
 
 function PostCard({ posts }) {
-	return <div classname="post_card">{posts.status}</div>;
+	return <div className="post_card">{posts.status}</div>;
 }
 
 export default PostCard;

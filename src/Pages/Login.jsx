@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import Loader from "../components/Common/Loader/Loader";
+import { useEffect, useState } from "react";
+import Loader from "../components/Common/Loader/Loader.jsx";
 import LoginComponent from "../components/Login/LoginComponent";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";

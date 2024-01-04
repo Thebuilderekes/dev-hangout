@@ -1,21 +1,23 @@
 .post-status-container {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	margin-top: 10%;
+	background: rgb(230, 232, 233);
 
 	.post-status {
-		width: 70%;
+		width: 80%;
 		padding: 40px 0;
 		display: flex;
 		justify-content: center;
-		background: #d8d7d7;
 
 		.open-post-modal {
 			font-size: var(--fs-1-2);
 			border: 1px solid #aaaaaa;
 			border-radius: 30px;
 			margin: 2%;
-			padding: 2% 20%;
+			padding: 1% 10%;
 			text-align: left;
 			background: #f7f9fa;
 			color: #999999;
@@ -25,5 +27,9 @@
 				background-color: #f3f0f0;
 			}
 		}
+	}
+
+	.posts-list {
+		width: 50%;
 	}
 }

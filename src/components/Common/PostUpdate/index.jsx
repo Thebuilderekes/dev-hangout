@@ -2,7 +2,7 @@ import React from "react";
 import { postStatus, getStatus } from "../../../api/FirestoreAPI";
 import { useState, useMemo } from "react";
 import ModalComponent from "../Modal/index";
-import PostCard from "../PostCard";
+import PostCard from "../PostCard/PostCard";
 
 import "./index.css";
 
@@ -23,7 +23,7 @@ function PostStatus() {
 
 	useMemo(() => {
 		getStatus(setAllStatuses);
-		//getStatus takes in setAllStatuses function as an arguemnt which at this time is an empty array but will be later given a value of all the statuses spread into it's array in the postUpdate > index.jsx component so that allStatuses can be mapped through and presented on screen here.
+		//getStatus takes in setAllStatuses function as an argument which at this time is an empty array but will be later given a value of all the statuses spread into it's array in the postUpdate > index.jsx component so that allStatuses can be mapped through and presented on screen here.
 	}, []);
 	return (
 		<div className="post-status-container">
@@ -39,9 +39,9 @@ function PostStatus() {
 				sendStatus={sendStatus}
 				setStatus={setStatus}
 			/>
-			<div>
-				{allStatuses.map((posts) => {
-					return <PostCard posts={posts} />;
+			<div className="posts-list">
+				{allStatuses.map((posts, id) => {
+					return <PostCard key={posts.id} posts={posts} />;
 				})}
 			</div>
 		</div>

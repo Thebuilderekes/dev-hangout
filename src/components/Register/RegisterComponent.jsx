@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { RegisterAPI, GoogleSignAPI } from "../../api/AuthAPI";
+import { postUserData } from "../../api/FirestoreAPI";
 import "../../Sass/LoginComponent.css";
+
 import Logo from "../Logo/Logo";
 import MainHeading from "../Headings/Heading";
 import Paragraph from "../Paragraph/Paragraph";
@@ -13,7 +15,7 @@ function RegisterComponent() {
 
 	const [credentials, setCredentials] = useState({});
 
-	async function login(e) {
+	async function register(e) {
 		try {
 			e.preventDefault();
 			let res = await RegisterAPI(credentials.email, credentials.password);
@@ -27,7 +29,9 @@ function RegisterComponent() {
 				progress: undefined,
 				theme: "light",
 			});
+			postUserData({ name: credentials.name, email: credentials.email });
 			navigate("/home"); /* navigate to  the home component*/
+			localStorage.setItem("userEmail", res.user.email);
 			console.log(res);
 		} catch (error) {
 			toast.error("cannot create account, sign in with google");
@@ -73,6 +77,20 @@ function RegisterComponent() {
 				<p></p>
 				<form id="login-form" name="login" className="login-form">
 					<input
+						id="name"
+						name="name"
+						type="text"
+						autoComplete="true"
+						className="common-input"
+						onChange={(event) =>
+							setCredentials({
+								...credentials,
+								name: event.target.value,
+							})
+						}
+						placeholder="Enter your name"
+					/>
+					<input
 						id="username"
 						name="username"
 						type="text"
@@ -100,7 +118,7 @@ function RegisterComponent() {
 						placeholder="Enter your password"
 					/>
 
-					<button onClick={login} className="login-btn">
+					<button onClick={register} className="login-btn">
 						Agree & Join
 					</button>
 				</form>
